@@ -1,0 +1,48 @@
+<!--navbar-->
+
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8sFwJDtQL4frmdgXIyKjnF_YyAr1gQ2BHw&s" />
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">My lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">New list</a>
+          </li>
+          <!--li class="nav-item"-->
+          <!--/li-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--banner-->
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://uploads.lebonbon.fr/source/2023/october/15064/-salome-rateau-1_1_2000.jpg)">
+  Save any kind of movies
+</div>
+
+<!--second navbar-->
+<div class="mylistadd">
+  <h4>My lists:</h4>
+    <%= link_to new_list_path, class: "btn btn-ghost" do %>
+      Add a list
+    <% end %>
+</div>
+
+<!--cards-->
+<div class="cards">
+  <% @lists.each do |list|%>
+    <%= link_to list_path(list), class:"card-category", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{list.image_url})" do %>
+      <%= list.name %>
+    <% end %>
+  <%end%>
+</div>

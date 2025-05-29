@@ -1,0 +1,39 @@
+<!--navbar-->
+
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8sFwJDtQL4frmdgXIyKjnF_YyAr1gQ2BHw&s" />
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">My lists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">New list</a>
+          </li>
+          <!--li class="nav-item"-->
+          <!--/li-->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--banner-->
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://uploads.lebonbon.fr/source/2023/october/15064/-salome-rateau-1_1_2000.jpg)">
+  Add a new list
+</div>
+
+<!--form-->
+<h5>New list:</h5>
+<%= simple_form_for(@list) do |l| %>
+  <%= l.input :name %>
+  <%= l.input :image_url, label: "image URL" %>
+  <%= l.button :submit, "create list" %>
+<% end %>
