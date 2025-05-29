@@ -9,7 +9,10 @@
 #   end
 
 puts "cleaning database!"
+Bookmark.destroy_all
+List.destroy_all
 Movie.destroy_all
+puts "database is clean!"
 
 puts "created movies manually..."
 Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
@@ -24,7 +27,7 @@ puts "faking more movies...."
  Movie.create!(
   title: Faker::Movie.unique.title,
   overview: Faker::Lorem.paragraph(sentence_count: 3),
-  poster_url: Faker::LoremFlickr.unique.image,
+  poster_url: Faker::LoremFlickr.image,
   rating: rand(5.0..9.5).round(1)
  )
 end

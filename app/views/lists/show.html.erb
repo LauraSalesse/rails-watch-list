@@ -36,8 +36,22 @@
 <div class="cards">
   <% @list.bookmarks.each do |bookmark| %>
       <!--display each movie in a nice grid-->
-        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=bookmark.movie.poster_url%>)">
-          <%= bookmark.movie.title %>
+        <div class="card" style="width: 18rem;">
+          <img src="<%= bookmark.movie.poster_url %>" class="card-img-top" alt="<%= bookmark.movie.title%>">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="card-title"><%= bookmark.movie.title %></h5>
+              ★<%= bookmark.movie.rating%>
+            </div>
+            <p class="card-subtitle mb-2 text-body-secondary"><%= bookmark.movie.overview %></p>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <p class="card-text t">
+                  <i class="fa-solid fa-quote-left me-2"></i>
+                  <em><%= bookmark.comment %></em>
+              </p>
+              <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: {confirm: "are you sure?"}, class: "card-link text-danger" %>
+            </div>
+          </div>
         </div>
   <% end %>
 </div>
