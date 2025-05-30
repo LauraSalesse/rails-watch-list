@@ -32,8 +32,8 @@
 
 <!--form-->
 <h5>New list:</h5>
-<%= simple_form_for(@list) do |l| %>
-  <%= l.input :name %>
-  <%= l.input :image_url, label: "image URL" %>
-  <%= l.button :submit, "create list" %>
+<%= simple_form_for(@list, html: {multipart: true}) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :photo, as: :file, label: "upload a list image" %>
+  <%= f.button :submit, "create list" %>
 <% end %>

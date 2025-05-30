@@ -39,9 +39,21 @@
 </div>
 
 <!--cards-->
+
 <div class="cards">
   <% @lists.each do |list|%>
-    <%= link_to list_path(list), class:"card-category", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{list.image_url})" do %>
+    <%# <%= cl_image_path(list.photo.key, height: 300, crop: :fill) if list.photo.attached? %>
+
+    <!--what i had initially-->
+    <%# <%= link_to list_path(list), class:"card-category", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(#{list.image_url})" do %>
+    <!--trying to do image upldoad-->
+    <% if list.photo.attached? %>
+      <% background = cl_image_path(list.photo.key, height: 300, crop: :fill) %>
+    <% else %>
+      <% background = "https://hips.hearstapps.com/hmg-prod/images/classic-movies-1661199935.jpg?crop=1.00xw:1.00xh;0,0&resize=1200:*"%>
+    <%end %>
+
+    <%= link_to list_path(list), class:"card-category", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('#{background}')" do %>
       <%= list.name %>
     <% end %>
   <%end%>

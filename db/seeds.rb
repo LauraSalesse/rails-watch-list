@@ -21,34 +21,34 @@ Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells
 Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
 
 
-puts "faking more movies...."
+# puts "faking more movies...."
 
-10.times do
- Movie.create!(
-  title: Faker::Movie.unique.title,
-  overview: Faker::Lorem.paragraph(sentence_count: 3),
-  poster_url: Faker::LoremFlickr.image,
-  rating: rand(5.0..9.5).round(1)
- )
-end
-
-
-
-# puts "fetching more movies with API"
-# require 'json'
-# require 'open-uri'
-
-# url = "https://tmkitt.lewagon.com/db/movie/top_rated"
-# response = URI.open(url).read
-# movies = JSON.parse(response)["results"]
-
-# movies.each do |movie|
-#   Movie.create!(
-#     title: movie["title"],
-#     overview: movie["overview"],
-#     poster_url: "https://image.tmdb.org/t/p/original#{movie["poster_path"]}",
-#     rating: movie["vote_average"]
-#   )
+# 10.times do
+#  Movie.create!(
+#   title: Faker::Movie.unique.title,
+#   overview: Faker::Lorem.paragraph(sentence_count: 3),
+#   poster_url: Faker::LoremFlickr.image,
+#   rating: rand(5.0..9.5).round(1)
+#  )
 # end
+
+
+
+puts "fetching more movies with API"
+require 'json'
+require 'open-uri'
+
+url = "https://tmkitt.lewagon.com/db/movie/top_rated"
+response = URI.open(url).read
+movies = JSON.parse(response)["results"]
+
+movies.each do |movie|
+  Movie.create!(
+    title: movie["title"],
+    overview: movie["overview"],
+    poster_url: "https://image.tmdb.org/t/p/original#{movie["poster_path"]}",
+    rating: movie["vote_average"]
+    )
+end
 
 puts "finished! created #{Movie.count} movies"
