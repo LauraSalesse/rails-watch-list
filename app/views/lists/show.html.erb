@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/lists">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz8sFwJDtQL4frmdgXIyKjnF_YyAr1gQ2BHw&s" />
 </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,10 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">My lists</a>
+            <a class="nav-link" href="/lists">My lists</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">New list</a>
+            <a class="nav-link" href="/lists/new">New list</a>
           </li>
           <!--li class="nav-item"-->
           <!--/li-->
@@ -56,11 +56,28 @@
   <% end %>
 </div>
 
+<!--REVIEW-->
+<div id="reviewsbox" class="mt-5 mb-5 p-4 bg-light rounded shadow-sm">
+  <h4 mt-4>Reviews of this list</h4>
+  <div id="reviewcommentsbox">
+    <% @list.reviews.each do |review|%>
+      <ul>
+        <li>🗨️<%= review.content %></li>
+      </ul>
+    <% end %>
 
+  </div>
+  <div id="reviewform">
+    <%= form_with model: [@list, @list.reviews.build], local: true do |f| %>
+      <%= f.text_area :content, class: "form-control", placeholder: "write your review"%>
+      <%= f.submit "post review", class: "btn btn-primary mt-2"%>
+    <% end %>
+  </div>
+</div>
 
 
 <!--go back button-->
 
 <%= link_to "/lists" do %>
-  <button class="btn btn-primary">go back to all lists</button>
+  <button class="btn btn-primary mb-5">go back to all lists</button>
 <% end %>
